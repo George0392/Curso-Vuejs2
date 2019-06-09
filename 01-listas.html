@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Listas con VueJS</title>
+
+<script src="js/vue.js"></script>
+
+</head>
+<body>
+	<div id="main">
+		<ul>
+			<!-- mostrar la lista de registros -->
+			<li v-for="item in nombres" v-text="item"></li>
+		</ul>
+		<!-- añadir texto a la lista al presionar enter -->
+		<input type="text" v-model="nombre" v-on:keyup.enter="addName">
+	</div>
+
+
+	<script type="text/javascript">
+		new Vue({
+			// seleccionamos el contenedor a modificar
+			el: '#main',
+			// cargamos la data por arreglos
+			data: {
+				nombres: ['George', 'Georgiree', 'Coromoto', 'Jorge']
+			},
+			// creamos el modelo
+			nombre: '',
+			methods: {
+				// funciones para añadir el texto del input
+				addName: function(){
+					this.nombres.push(this.nombre);
+					this.nombre = '';
+				}
+			}
+		});
+	</script>
+</html>

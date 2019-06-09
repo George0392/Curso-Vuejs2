@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lista VUEjs - AJAX</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/vue.js"></script>
+	<!-- libreria para conexion ajax -->
+	<script src="js/vue-resource.min.js"></script>
+
+</head>
+<body>
+	<div id="main" class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Lista VUEjs - AJAX</h1>
+				<ul class="list-group">
+					<li v-for="item in lists" class="list-group-item">
+						nombre: {{ item.name }} <br>
+						correo: {{ item.email }} <br>
+						telefono: {{ item.phone }}
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm-6">
+				<h1>JSON</h1>
+				<pre>
+					<!-- imprimir json sin formatear -->
+					{{ $data | json }}
+				</pre>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		//var urlUsers = 'https://randomuser.me/api/?results=10';
+		// var urlUsers = 'https://jsonplaceholder.typicode.com/users';
+		var urlUsers = 'users.json';
+
+		new Vue({
+			el: '#main',
+			// cargar funcion al cargar la pagina
+			created: function() {
+				this.getUsers();
+			},
+			// crear listado
+			data: {
+				lists: []
+			},
+			methods: {
+				// funcion para conectar al json
+				getUsers: function() {
+					// conectar al url del json y devolver datos
+					this.$http.get(urlUsers).then(function(response){
+						// cargar datos a la lista
+						this.lists = response.data;
+					});
+				}
+			}
+		});
+		</script>
+	</body>
+	</html>

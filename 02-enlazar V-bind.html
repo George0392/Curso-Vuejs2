@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>enlazar v.bind con VueJS</title>
+
+<script src="js/vue.js"></script>
+
+</head>
+<body>
+	<div id="main">
+
+		<input type="text" v-model="info" >
+		<p> Texto de Prueba... {{ info }} </p>
+
+<h2> v-bind</h2>
+<p>en este ejemplo colocar el raton sobre el texto introducido</p>
+
+<p v-bind:title="info" > otro texto ... {{ info }} </p>
+
+	</div>
+
+
+	<script type="text/javascript">
+		new Vue({
+			// seleccionamos el contenedor a modificar
+			el: '#main',
+			// cargamos la data por arreglos
+			data: {
+				info:""
+			}
+
+
+
+		});
+	</script>
+
+	</body>
+</html>
